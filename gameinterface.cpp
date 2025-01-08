@@ -8,9 +8,9 @@ GameInterface::GameInterface()
 
 }
 
-void GameInterface::parseGameCommand(QByteArray cmdJson)
+void GameInterface::parseGameCommand(QString cmdJson)
 {
-    QJsonDocument doc = QJsonDocument::fromJson(cmdJson);
+    QJsonDocument doc = QJsonDocument::fromJson(cmdJson.toUtf8());
     if (doc.isNull()) {
         isError = true;
         lastError = "Invalid JSON received from player agent.";

@@ -1,4 +1,5 @@
 QT = core
+QT += network
 
 CONFIG += c++17 cmdline
 
@@ -8,6 +9,7 @@ CONFIG += c++17 cmdline
 
 SOURCES += \
         apiclient.cpp \
+        gameagentcontroller.cpp \
         gameinterface.cpp \
         main.cpp \
         simgoblin.cpp
@@ -21,5 +23,6 @@ HEADERS += \
     apiclient.h \
     apiconfig.h \
     conversationmodel.h \
+    gameagentcontroller.h \
     gameinterface.h \
     simgoblin.h

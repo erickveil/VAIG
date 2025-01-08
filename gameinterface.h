@@ -49,7 +49,7 @@ public:
      *
      * @param cmdJson
      */
-    void parseGameCommand(QByteArray cmdJson);
+    void parseGameCommand(QString cmdJson);
 
     /**
      * @brief createGameStateJson
