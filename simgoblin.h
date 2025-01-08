@@ -20,6 +20,8 @@ public:
 
     SimGoblin();
 
+    QString command(QString cmd);
+
     void endTurn();
 
     void sleep();

@@ -2,6 +2,38 @@
 
 SimGoblin::SimGoblin() {}
 
+QString SimGoblin::command(QString cmd)
+{
+    if (cmd.toLower() == "sleep") {
+        sleep();
+    }
+    else if (cmd.toLower() == "eat") {
+        eat();
+    }
+    else if (cmd.toLower() == "play") {
+        play();
+    }
+    else if (cmd.toLower() == "pee") {
+        pee();
+    }
+    else if (cmd.toLower() == "talk") {
+        talk();
+    }
+    else if (cmd.toLower() == "shower") {
+        shower();
+    }
+    else if (cmd.toLower() == "clean") {
+        clean();
+    }
+    else if (cmd.toLower() == "wait") {
+        wait();
+    }
+    else {
+        return "Unknown Command: " + cmd;
+    }
+    return "";
+}
+
 void SimGoblin::endTurn()
 {
     --rest;
