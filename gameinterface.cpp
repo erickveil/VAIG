@@ -58,6 +58,24 @@ QString GameInterface::createGameStateJson()
     obj["turns"] = turns;
     QString result = QJsonDocument(obj).toJson();
     qDebug() << "Game Agent: " << result;
+
+    _checkWinCondition();
+
     return result;
 
+}
+
+void GameInterface::_checkWinCondition()
+{
+    if (_goblin.isDead()) {
+        qDebug() << "Game Agent: The Goblin has died!";
+        exit(0);
+    }
+
+    if (goal == SurviveTenTurns) {
+        if (turns >= 10) {
+            qDebug() << "Game Agent: The Goblin has survived 10 turns!";
+            exit(0);
+        }
+    }
 }

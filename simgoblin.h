@@ -33,6 +33,8 @@ public:
     void clean();
     void wait();
 
+    bool isDead();
+
 
 };
 

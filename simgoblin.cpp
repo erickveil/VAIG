@@ -171,3 +171,8 @@ void SimGoblin::wait()
 {
     currentActivity = "idle";
 }
+
+bool SimGoblin::isDead()
+{
+    return status == "dead";
+}

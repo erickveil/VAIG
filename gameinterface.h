@@ -84,6 +84,9 @@ public:
      * @return
      */
     QString createGameStateJson();
+
+private:
+    void _checkWinCondition();
 };
 
 #endif // GAMEINTERFACE_H
