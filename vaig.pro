@@ -26,3 +26,7 @@ HEADERS += \
     gameagentcontroller.h \
     gameinterface.h \
     simgoblin.h
+
+DISTFILES += \
+    README.md \
+    TODO.md
