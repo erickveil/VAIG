@@ -31,8 +31,7 @@ void GameInterface::parseGameCommand(QString cmdJson)
     }
     ++turns;
     _goblin.endTurn();
-
-    qDebug() << "Player Agent: " << cmdJson;
+    qDebug().noquote() << "Player Agent: " << cmdJson;
 }
 
 QString GameInterface::createGameStateJson()
@@ -41,13 +40,13 @@ QString GameInterface::createGameStateJson()
         QJsonObject obj;
         obj["error"] = lastError;
         QString result = QJsonDocument(obj).toJson();
-        qDebug() << "Game Agent: " << result;
+        qDebug().noquote() << "\nTURN " << turns << "\nGame Agent: " << result << "\n";
         return result;
     }
 
     QJsonObject obj;
-    obj["rest"] = _goblin.rest;
-    obj["hunger"] = _goblin.hunger;
+    obj["restfulness"] = _goblin.rest;
+    obj["satiety"] = _goblin.satiety;
     obj["fun"] = _goblin.fun;
     obj["bladder"] = _goblin.bladder;
     obj["social"] = _goblin.social;
@@ -57,7 +56,8 @@ QString GameInterface::createGameStateJson()
     obj["currentActivity"] = _goblin.currentActivity;
     obj["turns"] = turns;
     QString result = QJsonDocument(obj).toJson();
-    qDebug() << "Game Agent: " << result;
+
+    qDebug().noquote() << "\nTURN " << turns << "\nGame Agent: " << result << "\n";
 
     _checkWinCondition();
 

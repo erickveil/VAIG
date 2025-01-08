@@ -25,9 +25,10 @@ void GameAgentController::init()
                          _parseAiResponse(response);
     });
 
-    qDebug() << "Initialization Complte.";
-    qDebug() << "Model: " << _config.model;
-    qDebug() << "System Prompt: " << _config.system;
+    qDebug() << "Initialization Complete.";
+    qDebug() << "Model: " << _config.model << "\n";
+    qDebug().noquote() << "System Prompt: " << _config.system << "\n";
+
 }
 
 void GameAgentController::runGame()

@@ -37,34 +37,53 @@ QString SimGoblin::command(QString cmd)
 void SimGoblin::endTurn()
 {
     --rest;
+    if (rest <= 3) {
+        status = "tired";
+    }
     if (rest <= 0) {
         rest = 0;
+        status = "asleep";
     }
     if (rest >= 10) {
         rest = 10;
     }
-    --hunger;
-    if (hunger <= 0) {
-        hunger = 0;
+    --satiety;
+    if (satiety <= 3) {
+        status = "hungry";
     }
-    if (hunger >= 10) {
-        hunger = 10;
+    if (satiety <= 0) {
+        satiety = 0;
+    }
+    if (satiety >= 10) {
+        satiety = 10;
     }
     --fun;
+    if (fun <= 3) {
+        status = "bored";
+    }
     if (fun <= 0) {
         fun = 0;
     }
     if (fun >= 10) {
         fun = 10;
     }
-    --bladder;
+    ++bladder;
+    if (bladder >= 8) {
+        status = "uncomfortable";
+    }
     if (bladder <= 0) {
         bladder = 0;
     }
     if (bladder >= 10) {
-        bladder = 10;
+        bladder = 0;
+        hygene -= 5;
+        environment -= 5;
+        status = "soiled";
     }
     --social;
+    if (social <= 3) {
+        status = "lonely";
+    }
     if (social <= 0) {
         social = 0;
     }
@@ -72,6 +91,9 @@ void SimGoblin::endTurn()
         social = 10;
     }
     --hygene;
+    if (hygene <= 3) {
+        status = "smelly";
+    }
     if (hygene <= 0) {
         hygene = 0;
     }
@@ -79,6 +101,9 @@ void SimGoblin::endTurn()
         hygene = 10;
     }
     --environment;
+    if (environment <= 3) {
+        status = "unhappy";
+    }
     if (environment <= 0) {
         environment = 0;
     }
@@ -86,11 +111,11 @@ void SimGoblin::endTurn()
         environment = 10;
     }
 
-    if (rest <= 3 || hunger <= 3 || fun <= 3 || bladder <= 3 ||
-        social <= 3 || hygene <= 3 || environment <= 3) {
+    if (rest <= 2 || satiety <= 2 || fun <= 2 || bladder >= 9 ||
+        social <= 2 || hygene <= 2 || environment <= 2) {
         status = "unhappy";
     }
-    else if (rest <= 0 || hunger <= 0 ) {
+    else if (rest <= 0 || satiety <= 0 ) {
         status = "dead";
     }
     else {
@@ -108,12 +133,12 @@ void SimGoblin::sleep()
 void SimGoblin::eat()
 {
     if (status == "unhappy") {
-        hunger += 2;
+        satiety += 2;
     }
     else {
-        hunger += 5;
+        satiety += 5;
     }
-    bladder -= 2;
+    bladder += 2;
     currentActivity = "idle";
 }
 
@@ -132,7 +157,7 @@ void SimGoblin::play()
 
 void SimGoblin::pee()
 {
-    bladder = 10;
+    bladder = 0;
     hygene -= 2;
     currentActivity = "idle";
 }

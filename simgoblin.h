@@ -8,9 +8,9 @@ class SimGoblin
 public:
 
     int rest = 10;
-    int hunger = 10;
+    int satiety = 10;
     int fun = 10;
-    int bladder = 10;
+    int bladder = 0;
     int social = 10;
     int hygene = 10;
     int environment = 10;
